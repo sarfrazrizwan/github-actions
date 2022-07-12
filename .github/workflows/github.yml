@@ -19,8 +19,10 @@ jobs:
         run: cp /env/laravel-inertia.env .env
       - name: Install Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-      - name: Generate key
-        run: php artisan key:generate
+      - name: Run migration Migration
+        run: php artisan migrate --force
+      - name: Optimize
+        run: php artisan optimize
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
       - name: Install pachages
